@@ -239,7 +239,7 @@ def markdown_table(candidates: list[Candidate], key: str) -> str:
     return "\n".join(lines)
 
 
-def write_results(path: Path, candidates: list[Candidate]) -> None:
+def write_results(path: Path, candidates: list[Candidate], q_max: int) -> None:
     known = [
         candidate
         for candidate in candidates
@@ -255,7 +255,7 @@ def write_results(path: Path, candidates: list[Candidate]) -> None:
         "",
         "## Summary",
         "",
-        f"- q_max: {Q_MAX}",
+        f"- q_max: {q_max}",
         f"- candidates: {len(candidates)}",
         f"- known example `2 + 3^10*109 = 23^5` detected: {'yes' if known else 'no'}",
         "",
@@ -283,7 +283,7 @@ def main() -> None:
     out_dir = Path("outputs")
     candidates_sorted = sorted(candidates, key=lambda item: item.Q, reverse=True)
     write_csv(out_dir / "abc_quality_candidates.csv", candidates_sorted)
-    write_results(Path("results.md"), candidates_sorted)
+    write_results(Path("results.md"), candidates_sorted, args.q_max)
     print(f"candidates={len(candidates_sorted)}")
     print(
         "known_example_detected=",
