@@ -2,6 +2,10 @@
 
 Python scripts for experimental ABC-quality and sieve-style number-theory searches.
 
+## Codex Compute Policy
+
+Codex should follow `AGENTS.md` before running nontrivial searches in this repository. In short: use the repo environment, bound every search, do a small smoke test first, estimate load, and stop before a heavy server-side run if the cost looks risky. Heavy scans should be prepared as reproducible local commands instead of being forced through a thin or shared runtime.
+
 ## ABC Quality Candidate Search
 
 This repository currently contains `search.py`, which searches candidates of the form:
