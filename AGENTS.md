@@ -9,6 +9,21 @@ This repository is used for experimental number-theory searches. Some tasks can 
 - Do not assume that the ambient `python` command, bundled Codex Python, or globally installed packages are suitable.
 - If dependencies are missing, report the missing dependency and propose installing it in the repo environment. Do not silently rewrite the algorithm merely to fit a thin runtime unless the task is explicitly lightweight.
 
+## CSV Master, Backup, and History Policy
+
+For number-theory observation CSV work, Codex must follow `docs/csv_management_policy.md`.
+
+Mandatory short form:
+
+- Keep exactly one active master CSV, normally `data/base/clean_sieve_difference_master.csv`.
+- Put derived CSV files under `data/derived/`; never let a derived CSV replace the master CSV.
+- Do not nest old ZIP files inside new ZIP files.
+- Data extension with unchanged columns and unchanged calculation specification may overwrite the master CSV.
+- Column additions, column deletion, column renames, calculation-specification changes, classification-condition changes, base-N rule changes, tie-handling changes, or bug fixes require a backup first under `data/backups/`.
+- Every change must append to `version_history.md` or `data/base/version_history.md`.
+- Before processing, state the processing type, master CSV path, whether columns change, whether calculation specification changes, whether backup is required, and that version history will be updated.
+- After processing, summarize row count, target range, column count and names, key class counts, tied nearest-N rows, backup status, and version-history entry.
+
 ## Compute Safety Policy
 
 Before running any potentially expensive search, Codex must do a preflight check.
