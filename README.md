@@ -6,6 +6,10 @@ Python scripts for experimental ABC-quality and sieve-style number-theory search
 
 Codex should follow `AGENTS.md` before running nontrivial searches in this repository. In short: use the repo environment, bound every search, do a small smoke test first, estimate load, and stop before a heavy server-side run if the cost looks risky. Heavy scans should be prepared as reproducible local commands instead of being forced through a thin or shared runtime.
 
+## CSV Management Policy
+
+For observation CSV work, use exactly one master CSV and follow `docs/csv_management_policy.md`. Simple data extension may overwrite the master CSV when columns and calculation rules are unchanged. Schema changes, classification-rule changes, calculation changes, or corrections require backups under `data/backups/` and a `version_history.md` entry. Old ZIP files must not be nested inside new ZIP files.
+
 ## ABC Quality Candidate Search
 
 This repository currently contains `search.py`, which searches candidates of the form:
